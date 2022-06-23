@@ -7,7 +7,7 @@ const Layout = (props) => {
   return (
       <Fragment>
           <Navbar/>
-          <main>{props.children}</main>
+          <main className='w-[90%] max-w-[40rem] pt-4'>{props.children}</main>
       </Fragment>
   )
 }

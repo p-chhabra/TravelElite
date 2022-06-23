@@ -3,6 +3,7 @@ import { Routes, Route} from "react-router-dom";
 import Places from "./places/pages/Places";
 import Layout from "./shared/Layout/Layout";
 import AllUsers from "./users/pages/AllUsers";
+import './index.css'
 
 function App() {
   return (
