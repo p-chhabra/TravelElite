@@ -8,14 +8,14 @@ const AllUsers = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const allUsers = DUMMY_USERS.filter((user)=>{
-    if(searchTerm == ""){
+    if(searchTerm === ""){
       return user;
     } else if(user.name.toLowerCase().includes(searchTerm.toLowerCase())){
       return user;
-    }
+    } 
   }).map((user) => {
     return (
-      <VisitUser key={Math.random()*100} name={user.name} places={user.places} rating={user.rating}/>
+      <VisitUser key={Math.random()*100} name={user.name} places={user.places} rating={user.rating} src={user.profile} />
     );
   });
   

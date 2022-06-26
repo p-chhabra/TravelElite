@@ -1,6 +1,6 @@
 
 .card {
-  background: #1f2124;
+  background-image: linear-gradient(to right, rgba(20, 30, 30, 0.8), rgba(20, 15, 15, 0.6));
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   margin: 50px 30px 40px 30px;
@@ -27,11 +27,15 @@
   font-size: 25px;
 }
 .card .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 50px 0;
 }
 .card .icon img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
 }
 .card .features ul {
   padding: 0;
