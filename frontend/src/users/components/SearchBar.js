@@ -1,21 +1,23 @@
 import React from "react";
 import "./SearchBar.css";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
     const onSubmitHandler = (e)=>{
         e.preventDefault();
     }
 
+
   return (
     <div className="form-req wrapper">
-      <form onsubmit={onSubmitHandler} role="search">
-        <label for="search">Search for stuff</label>
+      <form onSubmit={onSubmitHandler} role="search">
+        <label htmlFor="search">Search for stuff</label>
         <input
           id="search"
           type="search"
+          onChange={(event)=>{props.setTerm(event.target.value)}}
           placeholder="Search..."
-          autofocus
+          autoFocus
           required
         />
         <button type="button">Go</button>
