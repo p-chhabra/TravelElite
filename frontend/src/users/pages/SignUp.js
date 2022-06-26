@@ -15,11 +15,11 @@ const SignUp = () => {
     <ul className="noBullet">
       <li>
         <label htmlFor="username"></label>
-        <input type="text" className="inputFields" id="username" name="username" placeholder="Username"  required/>
+        <input type="text" className="inputFields" id="username" name="username" placeholder="Username" autoComplete='off'  required/>
       </li>
       <li>
         <label htmlFor="email"></label>
-        <input type="email" className="inputFields" id="email" name="email" placeholder="Email" required/>
+        <input type="email" className="inputFields" id="email" name="email" placeholder="Email" autoComplete='off' required/>
       </li>
       <li>
         <label htmlFor="password"></label>

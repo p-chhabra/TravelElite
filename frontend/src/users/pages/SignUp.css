@@ -62,7 +62,7 @@
 .signupForm {
   width: 50rem;
   padding: 5rem 0;
-  background: rgba(20, 40, 40, 0.8);
+  background-image: linear-gradient(to right, rgba(20, 40, 40, 0.8), rgba(20, 25, 25, 0.8));
   transition: 0.2s;
 }
 .signupForm h2 {

@@ -25,7 +25,7 @@ const Navbar = () => {
                 <NavLink to="/users">All Users</NavLink>
             </li>
             <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
-                <NavLink to="/places">SignIn</NavLink>
+                <NavLink to="/signin">SignIn</NavLink>
             </li>
             <li className='px-4 border-2 border-green-400 rounded-md p-1 hover:text-[black] hover:bg-green-400 duration-500 text-sm my-2'>
                 <NavLink to="/signup">SignUp</NavLink>
