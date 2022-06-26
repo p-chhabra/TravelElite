@@ -15,7 +15,7 @@ const AllUsers = () => {
     } 
   }).map((user) => {
     return (
-      <VisitUser key={Math.random()*100} name={user.name} places={user.places} rating={user.rating}/>
+      <VisitUser key={Math.random()*100} name={user.name} places={user.places} rating={user.rating} src={user.profile} />
     );
   });
   

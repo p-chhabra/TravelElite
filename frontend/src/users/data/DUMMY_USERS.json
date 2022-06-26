@@ -1,6 +1,7 @@
 [
-    { "name": "Ganja", "places": 5, "rating": 4.2 },
-    { "name": "Panty", "places": 8, "rating": 4.6 },
-    { "name": "Maddy", "places": 18, "rating": 4.9 },
-    { "name": "Bandook", "places": 7, "rating": 4.5 }
+    { "name": "Ganja", "places": 5, "rating": 4.2, "profile":"https://avatars.githubusercontent.com/u/92568189?v=4"},
+    { "name": "Panty", "places": 8, "rating": 4.6, "profile": ""},
+    { "name": "Maddy", "places": 18, "rating": 4.9, "profile": "" },
+    { "name": "Bandook", "places": 7, "rating": 4.5, "profile": "" },
+    { "name": "Lendi", "places": 3, "rating": 4.0, "profile": "https://avatars.githubusercontent.com/u/76838551?v=4" }
   ]
