@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+.signupSection {
+  position: relative;
+  text-align: center;
+  display: flex;
+  color: white;
+  min-height: 35rem;
+  box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 1024px){
+    .signupSection{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }  
+    .info{
+      width: 40rem !important;
+    }              
+    .signupForm{
+      width: 40rem !important;
+    }
+}
+
+@media screen and (max-width: 768px){
+  .signupSection{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }  
+  .info{
+    width: 30rem !important;
+  }              
+  .signupForm{
+    width: 30rem !important;
+  }
+  .inputFields{
+    width: 20rem !important;
+  }
+}
+
+.info {
+  width: 30rem;
+  background: rgba(20, 20, 20, 0.8);
+  padding: 30px 0;
+  border-right: 5px solid rgba(30, 30, 30, 0.8);
+}
+.info h2 {
+  padding-top: 30px;
+  font-weight: 300;
+}
+.info p {
+  font-size: 30px;
+}
+.info .icon {
+  font-size: 8em;
+  padding: 20px 0;
+  color: #0ab4b4;
+}
+
+.signupForm {
+  width: 50rem;
+  padding: 5rem 0;
+  background: rgba(20, 40, 40, 0.8);
+  transition: 0.2s;
+}
+.signupForm h2 {
+  font-weight: 300;
+}
+
+.inputFields {
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 20rem;
+  border: 1px solid rgb(74 222 128);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: rgba(20, 20, 20, 0.2);
+  color: white;
+  outline: none;
+}
+
+.inputImageField{
+  width: 20rem !important;
+}
+
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
+
+#join-btn {
+  border: 1px solid rgb(74 222 128);
+  background: rgba(20, 20, 20, 0.6);
+  font-size: 18px;
+  color: white;
+  margin-top: 40px;
+  padding: 10px 50px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#join-btn:hover {
+  background: rgba(20, 20, 20, 0.8);
+  padding: 10px 80px;
+}
