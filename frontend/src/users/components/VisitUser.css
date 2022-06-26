@@ -3,17 +3,23 @@
   background: #1f2124;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
-  margin: 50px 40px 20px 40px;
-  width: calc(33.3333% - 80px);
+  margin: 50px 30px 40px 30px;
+  width: calc(25% - 60px);
   /* 1/3 minus the margins (20+20) */
   padding: 20px;
   text-align: center;
   color: white;
   float: left;
 }
+@media (max-width: 1024px) {
+  .card {
+    margin: 30px 40px;
+    width: calc(50% - 80px);
+  }
+}
 @media (max-width: 768px) {
   .card {
-    margin: 10px 20px;
+    margin: 30px 40px;
     width: calc(100% - 80px);
   }
 }
