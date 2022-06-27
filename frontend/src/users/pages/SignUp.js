@@ -1,8 +1,10 @@
 import React from 'react'
+import AnimatedPage from '../../shared/components/AnimatedPage'
 import './SignUp.css'
 
 const SignUp = () => {
   return (
+    <AnimatedPage>
     <div className='flex items-center justify-center mt-20'>
     <div className="signupSection">
   <div className="info">
@@ -36,6 +38,7 @@ const SignUp = () => {
   </form>
 </div>
 </div>
+</AnimatedPage>
   )
 }
 

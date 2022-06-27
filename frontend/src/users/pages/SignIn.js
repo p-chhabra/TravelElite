@@ -1,8 +1,10 @@
 import React from 'react'
+import AnimatedPage from '../../shared/components/AnimatedPage'
 import "./SignIn.css"
 
 const SignIn = () => {
   return (
+    <AnimatedPage>
     <div className='flex justify-center pt-20'>
     <div className='signinSection'>
     <form action="#" method="POST" className="signinForm" name="signinform">
@@ -23,6 +25,7 @@ const SignIn = () => {
   </form>
   </div>
   </div>
+  </AnimatedPage>
   )
 }
 
