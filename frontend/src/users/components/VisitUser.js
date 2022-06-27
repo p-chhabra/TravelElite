@@ -4,6 +4,7 @@ import './VisitUser.css'
 import defaultImg from '../../assets/default-profile.jpg'
 
 const VisitUser = (props) => {
+
   return (
     <div className="card">
 
@@ -20,7 +21,7 @@ const VisitUser = (props) => {
     </ul>
   </div>
 
-  <Link to="#" className="btn">Visit Profile</Link>
+  <Link to={`/users/${props.id}`} className="btn">Visit Profile</Link>
 
 </div>
   )

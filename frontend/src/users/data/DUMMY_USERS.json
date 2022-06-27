@@ -1,7 +1,7 @@
 [
-    { "name": "Ganja", "places": 5, "rating": 4.2, "profile":"https://avatars.githubusercontent.com/u/92568189?v=4"},
-    { "name": "Panty", "places": 8, "rating": 4.6, "profile": ""},
-    { "name": "Maddy", "places": 18, "rating": 4.9, "profile": "" },
-    { "name": "Bandook", "places": 7, "rating": 4.5, "profile": "" },
-    { "name": "Lendi", "places": 3, "rating": 4.0, "profile": "https://avatars.githubusercontent.com/u/76838551?v=4" }
+    { "id": "u1", "name": "Ganja", "places": 5, "rating": 4.2, "profile":"https://avatars.githubusercontent.com/u/92568189?v=4"},
+    { "id": "u2", "name": "Panty", "places": 8, "rating": 4.6, "profile": ""},
+    { "id": "u3", "name": "Maddy", "places": 18, "rating": 4.9, "profile": "" },
+    { "id": "u4", "name": "Bandook", "places": 7, "rating": 4.5, "profile": "" },
+    { "id": "u5", "name": "Lendi", "places": 3, "rating": 4.0, "profile": "https://avatars.githubusercontent.com/u/76838551?v=4" }
   ]
