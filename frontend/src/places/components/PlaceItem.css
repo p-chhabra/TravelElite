@@ -84,3 +84,17 @@
   color: white;
   font-size: 14px;
 }
+
+.place-item__modal-content {
+  padding: 0;
+}
+
+.place-item__modal-actions {
+  text-align: right;
+}
+
+.map-container{
+  text-align: center;
+  width: 39rem;
+  height: 20rem;
+}
