@@ -10,7 +10,7 @@ const Places = (props) => {
 
   const placesList = DUMMY_USER_PLACES.map((place)=>{
     if(place.creatorID === userID){
-      return <PlaceItem key={place.id} description={place.description} title={place.title} subTitle={place.subTitle} address={place.address}/> 
+      return <PlaceItem key={place.id} description={place.description} title={place.title} subTitle={place.subTitle} address={place.address} coordinates={place.location}/> 
     } 
   });
 

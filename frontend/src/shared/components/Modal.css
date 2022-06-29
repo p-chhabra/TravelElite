@@ -16,8 +16,9 @@
     color: white;
   }
   
-  .modal__header h2 {
+  .modal__header p {
     margin: 0.5rem;
+    font-size: 1.3rem;
   }
   
   .modal__content {

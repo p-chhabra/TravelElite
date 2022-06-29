@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./PlaceItem.css";
 import Modal from "../../shared/components/Modal";
+import Map from "./Map";
 
 const PlaceItem = (props) => {
   const [showMap, setShowMap] = useState(false);
@@ -8,18 +9,24 @@ const PlaceItem = (props) => {
   const showMapHandler = () => setShowMap(true);
   const closeMapHandler = () => setShowMap(false);
 
+  const Button = ()=>{
+    return <button onClick={closeMapHandler} className="p-5 bg-green-300 text-white">Close</button>
+  }
+
+  const {lat, lng} = props.coordinates;
+
   return (
     <React.Fragment>
       <Modal
         show={showMap}
         header={props.address}
         onCancel={closeMapHandler}
-        contentClass=""
-        footerClass=""
-        footer={<button className="">Close</button>}
+        contentClass="place-item__modal-content "
+        footerClass="place-item__modal-actions "
+        footer={<Button/>}
       >
         <div className="map-container">
-          <h1>THE MAP!</h1>
+          <Map center={[lat,lng]} zoom={16}/>
         </div>
       </Modal>
       <div className="container">
