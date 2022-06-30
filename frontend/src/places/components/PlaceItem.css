@@ -1,4 +1,4 @@
-.container {
+.card-container {
   position: relative;
   width: calc(33% - 60px);
   margin: 50px 30px 40px 30px;
@@ -11,28 +11,28 @@
 }
 
 @media (max-width: 1024px) {
-  .container {
+  .card-container {
     margin: 30px 40px;
     width: calc(50% - 80px);
   }
 }
 @media (max-width: 768px) {
-  .container {
+  .card-container {
     margin: 30px 40px;
     width: calc(100% - 80px);
   }
 }
 
-.container:hover {
+.card-container:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-.container:hover img {
+.card-container:hover img {
   transform: scale(1.25);
 }
-.container:hover figcaption {
+.card-container:hover figcaption {
   bottom: 0;
 }
-.container h1 {
+.card-container h1 {
   position: absolute;
   top: 50px;
   left: 20px;
@@ -43,12 +43,12 @@
   font-weight: 100;
   line-height: 1;
 }
-.container img {
+.card-container img {
   height: 100%;
   width: 100%;
   transition: 0.25s;
 }
-.container figcaption {
+.card-container figcaption {
   position: absolute;
   bottom: -20%;
   left: 0;
@@ -61,17 +61,17 @@
   line-height: 1;
   transition: 0.25s;
 }
-.container figcaption h2 {
+.card-container figcaption h2 {
   margin: 0 0 20px;
   font-size: 20px;
   font-weight: 500;
   padding: 0;
 }
-.container figcaption p {
+.card-container figcaption p {
   font-size: 14px;
   line-height: 1.75;
 }
-.container figcaption button {
+.card-container figcaption button {
   position: relative;
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@
   text-align: right;
 }
 
-.map-container{
+.map-card-container{
   text-align: center;
   width: 39rem;
   height: 20rem;

@@ -1,11 +1,12 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useContext} from 'react'
 import AnimatedPage from '../../shared/components/AnimatedPage'
 import "./SignIn.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../shared/context/auth-context'
 
 ///VALIDITY
 const isFiveChars = (value) => {
-  return value.trim().length === 5;
+  return value.trim().length >= 5;
 }
 
 const emailValidation = (value) => {
@@ -14,6 +15,12 @@ const emailValidation = (value) => {
 
 const SignIn = () => {
 
+  //Authorization Context
+  const auth = useContext(AuthContext);
+  
+  //Naviagtion
+  const Navigate = useNavigate(); 
+
   const [formInputValidity, setFormInputValidity] = useState({
     email: true,
     password: true,
@@ -21,6 +28,8 @@ const SignIn = () => {
 
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const form = document.getElementById("SignInForm");
 
   const onSubmitHandler = (e) => {
 
@@ -42,13 +51,19 @@ const SignIn = () => {
     if(!formIsValid){
       return;
     }
+
+    if(formIsValid){
+      auth.login();
+      form.reset();
+      Navigate('/profile');
+    }
   }
 
   return (
     <AnimatedPage>
     <div className='flex justify-center pt-20'>
     <div className='signinSection'>
-    <form action="#" method="POST" className="signinForm" name="signinform">
+    <form action="#" method="POST" className="signinForm" id='SignInForm' name="signinform">
     <p className='text-2xl'>Sign In</p>
     <ul className="noBullet">
       <li>

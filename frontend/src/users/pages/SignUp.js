@@ -1,6 +1,8 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useContext} from 'react'
 import AnimatedPage from '../../shared/components/AnimatedPage'
 import './SignUp.css'
+import { AuthContext } from '../../shared/context/auth-context';
+import { Link, useNavigate } from 'react-router-dom';
 
 const emailValidation = value => value.includes('@') && value.length >= 5;
 const userNameValidation = value => !value.includes(" ") && value.length >= 4;
@@ -8,8 +10,15 @@ const passwordValidation = value => !value.includes(" ") && value.length >= 5;
 
 const SignUp = () => {
 
+  ///AuthContext
+  const auth = useContext(AuthContext);
+
+  //Navigation
+  const Navigate = useNavigate();
+
   const form = document.getElementById('SignUpForm');
 
+  ///Checking Form Input Validity
   const [formValidity, setFormValidity] = useState({
     email: true,
     username: true,
@@ -40,10 +49,19 @@ const SignUp = () => {
 
   const formIsValid = emailIsValid && userNameIsValid && passwordIsValid;
 
+  //If Form inputs are invalid
   if(!formIsValid) return;
-  form.reset();
+
+  ///Login State // If Form inputs are valid
+  if(formIsValid){
+    auth.login();
+    form.reset();
+    Navigate('/profile');
+  }
   }
 
+
+  console.log(auth.isLoggedIn);
 
   return (
     <AnimatedPage>
