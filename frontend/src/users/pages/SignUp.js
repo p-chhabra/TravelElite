@@ -1,8 +1,68 @@
-import React from 'react'
+import React, {useState, useRef, useContext} from 'react'
 import AnimatedPage from '../../shared/components/AnimatedPage'
 import './SignUp.css'
+import { AuthContext } from '../../shared/context/auth-context';
+import { Link, useNavigate } from 'react-router-dom';
+
+const emailValidation = value => value.includes('@') && value.length >= 5;
+const userNameValidation = value => !value.includes(" ") && value.length >= 4;
+const passwordValidation = value => !value.includes(" ") && value.length >= 5;
 
 const SignUp = () => {
+
+  ///AuthContext
+  const auth = useContext(AuthContext);
+
+  //Navigation
+  const Navigate = useNavigate();
+
+  const form = document.getElementById('SignUpForm');
+
+  ///Checking Form Input Validity
+  const [formValidity, setFormValidity] = useState({
+    email: true,
+    username: true,
+    password: true
+  })
+
+  const emailInputRef = useRef();
+  const userNameInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const formValidityHandler = (e) => {
+
+    e.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+  const enteredUserName = userNameInputRef.current.value;
+  const enteredPassword = passwordInputRef.current.value;
+
+  const emailIsValid = emailValidation(enteredEmail);
+  const userNameIsValid = userNameValidation(enteredUserName);
+  const passwordIsValid = passwordValidation(enteredPassword);
+
+  setFormValidity({
+    email: emailIsValid,
+    username: userNameIsValid,
+    password: passwordIsValid
+  })
+
+  const formIsValid = emailIsValid && userNameIsValid && passwordIsValid;
+
+  //If Form inputs are invalid
+  if(!formIsValid) return;
+
+  ///Login State // If Form inputs are valid
+  if(formIsValid){
+    auth.login();
+    form.reset();
+    Navigate('/profile');
+  }
+  }
+
+
+  console.log(auth.isLoggedIn);
+
   return (
     <AnimatedPage>
     <div className='flex items-center justify-center mt-20'>
@@ -12,27 +72,30 @@ const SignUp = () => {
     <i className="icon ion-ios-ionic-outline" aria-hidden="true"></i>
     <p>YourPlaces</p>
   </div>
-  <form action="#" method="POST" className="signupForm" name="signupform">
+  <form action="#" method="POST" id='SignUpForm' className="signupForm" name="signupform">
     <p className='text-2xl'>Sign Up</p>
     <ul className="noBullet">
       <li>
         <label htmlFor="username"></label>
-        <input type="text" className="inputFields" id="username" name="username" placeholder="Username" autoComplete='off'  required/>
+        <input ref={userNameInputRef} type="text" className={formValidity.username ? `inputFields` : `inputFieldInvalid`} id="username" name="username" placeholder="Username" autoComplete='off'  required/>
+        {!formValidity.username && <p className='text-red-500'>Username should be atleast 4 characters long</p>}
       </li>
       <li>
         <label htmlFor="email"></label>
-        <input type="email" className="inputFields" id="email" name="email" placeholder="Email" autoComplete='off' required/>
+        <input ref={emailInputRef} type="email" className={formValidity.email ? `inputFields` : `inputFieldInvalid`} id="email" name="email" placeholder="Email" autoComplete='off' required/>
+        {!formValidity.email && <p className='text-red-500'>Please enter a valid email</p>}
       </li>
       <li>
         <label htmlFor="password"></label>
-        <input type="password" className="inputFields" id="password" name="password" placeholder="Password" required/>
+        <input ref={passwordInputRef} type="password" className={formValidity.password ? `inputFields` : `inputFieldInvalid`} id="password" name="password" placeholder="Password" required/>
+        {!formValidity.password && <p className='text-red-500'>Password should be atleast 4 characters long</p>}
       </li>
       <h1 className='pt-10'>Profile Picture (Optional)</h1>
       <li>
         <input type="file" className='inputFields inputImageField' name="profile-pic" accept='image/png, image/jpeg, image/jpg'/>
       </li>
       <li id="center-btn">
-        <input type="submit" id="join-btn" name="join" alt="Join" value="Join"></input>
+        <input onClick={formValidityHandler} type="submit" id="join-btn" name="join" alt="Join" value="Join"></input>
       </li>
     </ul>
   </form>

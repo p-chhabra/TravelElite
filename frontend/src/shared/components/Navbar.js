@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 import {FaBars} from 'react-icons/fa'
+import { AuthContext } from '../context/auth-context'
 
 ///Navbar Component
 const Navbar = () => {
@@ -12,6 +13,8 @@ const Navbar = () => {
     const handleClick = () => {
         setNav(!nav);
     }
+
+    const auth = useContext(AuthContext);
 
   return (
       ///Wide Device Navbar
@@ -24,12 +27,15 @@ const Navbar = () => {
             <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
                 <NavLink to="/users">All Users</NavLink>
             </li>
-            <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
+            {!auth.isLoggedIn && <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
                 <NavLink to="/signin">SignIn</NavLink>
-            </li>
-            <li className='px-4 border-2 border-green-400 rounded-md p-1 hover:text-[black] hover:bg-green-400 duration-500 text-sm my-2'>
+            </li>}
+            {!auth.isLoggedIn && <li className='px-4 border-2 border-green-400 rounded-md p-1 hover:text-[black] hover:bg-green-400 duration-500 text-sm my-2'>
                 <NavLink to="/signup">SignUp</NavLink>
-            </li>
+            </li>}
+            {auth.isLoggedIn && <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
+                <NavLink to="/profile">Profile</NavLink>
+            </li>}
         </ul>
     </nav>
   )

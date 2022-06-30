@@ -29,7 +29,7 @@ const PlaceItem = (props) => {
           <Map center={[lat,lng]} zoom={16}/>
         </div>
       </Modal>
-      <div className="container">
+      <div className="card-container">
         <h1>{props.title}</h1>
         <img
           src="https://images.pexels.com/photos/1680140/pexels-photo-1680140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
