@@ -34,7 +34,7 @@ const Navbar = () => {
                 <NavLink to="/signup">SignUp</NavLink>
             </li>}
             {auth.isLoggedIn && <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to={`/${auth.user}`}>Profile</NavLink>
             </li>}
         </ul>
     </nav>

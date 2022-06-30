@@ -2,7 +2,7 @@ import React, {useState, useRef, useContext} from 'react'
 import AnimatedPage from '../../shared/components/AnimatedPage'
 import './SignUp.css'
 import { AuthContext } from '../../shared/context/auth-context';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const emailValidation = value => value.includes('@') && value.length >= 5;
 const userNameValidation = value => !value.includes(" ") && value.length >= 4;
@@ -12,6 +12,11 @@ const SignUp = () => {
 
   ///AuthContext
   const auth = useContext(AuthContext);
+  //Username Handler
+  const [username, setUsername] = useState('');
+  const onUsernameInput = (e) => {
+    setUsername(e.target.value);
+  }
 
   //Navigation
   const Navigate = useNavigate();
@@ -55,8 +60,9 @@ const SignUp = () => {
   ///Login State // If Form inputs are valid
   if(formIsValid){
     auth.login();
+    auth.setUser(enteredUserName);
     form.reset();
-    Navigate('/profile');
+    Navigate(`/${username}`);
   }
   }
 
@@ -77,7 +83,7 @@ const SignUp = () => {
     <ul className="noBullet">
       <li>
         <label htmlFor="username"></label>
-        <input ref={userNameInputRef} type="text" className={formValidity.username ? `inputFields` : `inputFieldInvalid`} id="username" name="username" placeholder="Username" autoComplete='off'  required/>
+        <input ref={userNameInputRef} type="text" className={formValidity.username ? `inputFields` : `inputFieldInvalid`} id="username" name="username" placeholder="Username" autoComplete='off' onChange={onUsernameInput} required/>
         {!formValidity.username && <p className='text-red-500'>Username should be atleast 4 characters long</p>}
       </li>
       <li>
