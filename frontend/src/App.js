@@ -16,6 +16,7 @@ function App() {
   const location = useLocation();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
 
   const login = useCallback(()=>{
     setIsLoggedIn(true);
@@ -25,8 +26,12 @@ function App() {
     setIsLoggedIn(false);
   },[]);
 
+  const setUserName = useCallback((user)=>{
+    setUser(user);
+  },[]);
+
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}>
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, user: user, setUser: setUserName}}>
     <Layout>
       <AnimatePresence exitBeforeEnter>
       <Routes key={location.pathname} location={location}>
@@ -35,7 +40,7 @@ function App() {
         <Route path="/users/:userID" element={<Places/>}/>
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/:profile" element={<Profile/>}/>
       </Routes>
       </AnimatePresence>
     </Layout>
