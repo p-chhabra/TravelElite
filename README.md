@@ -1,2 +1,2 @@
 # MERN-Project
-Under Development Phase
+Under development phase
