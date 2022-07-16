@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const placesSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const placesSchema = new Schema({
     title: {type: String, required: true},
     subTitle: {type: String, required: true},
     description: {type: String, required: true},
