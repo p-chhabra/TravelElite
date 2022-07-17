@@ -34,7 +34,7 @@ const SignUp = () => {
   const userNameInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const formValidityHandler = (e) => {
+  const onSumbitHandler = async (e) => {
 
     e.preventDefault();
 
@@ -59,15 +59,37 @@ const SignUp = () => {
 
   ///Login State // If Form inputs are valid
   if(formIsValid){
+
+    if(auth.isLoggedIn){
+
+    } else{
+      try{
+        const response = await fetch('http://localhost:5000/api/users/signup',{
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: userNameInputRef.current.value,
+            email: emailInputRef.current.value,
+            password: passwordInputRef.current.value
+          })
+        })
+  
+        const responseData = await response.json();
+        console.log(responseData);
+      } catch(err){
+        console.log(err.message);
+        console.log('ABC');
+      }
+    }
+
     auth.login();
     auth.setUser(enteredUserName);
     form.reset();
     Navigate(`/${username}`);
   }
   }
-
-
-  console.log(auth.isLoggedIn);
 
   return (
     <AnimatedPage>
@@ -101,7 +123,7 @@ const SignUp = () => {
         <input type="file" className='inputFields inputImageField' name="profile-pic" accept='image/png, image/jpeg, image/jpg'/>
       </li>
       <li id="center-btn">
-        <input onClick={formValidityHandler} type="submit" id="join-btn" name="join" alt="Join" value="Join"></input>
+        <input onClick={onSumbitHandler} type="submit" id="join-btn" name="join" alt="Join" value="Join"></input>
       </li>
     </ul>
   </form>
