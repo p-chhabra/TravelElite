@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import { Routes, Route, useLocation} from "react-router-dom";
+import { Routes, Route, useLocation, Navigate} from "react-router-dom";
 import Layout from "./shared/Layout/Layout";
 import AllUsers from "./users/pages/AllUsers";
 import Home from "./Home/Home";
@@ -17,13 +17,16 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState("");
+  const [userID, setUserID] = useState(null);
 
-  const login = useCallback(()=>{
+  const login = useCallback((uid)=>{
     setIsLoggedIn(true);
+    setUserID(uid);
   },[])
 
   const logout = useCallback(()=>{
     setIsLoggedIn(false);
+    setUserID(null);
   },[]);
 
   const setUserName = useCallback((user)=>{
@@ -31,7 +34,7 @@ function App() {
   },[]);
 
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, user: user, setUser: setUserName}}>
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, user: user, setUser: setUserName, userID: userID}}>
     <Layout>
       <AnimatePresence exitBeforeEnter>
       <Routes key={location.pathname} location={location}>
@@ -40,7 +43,7 @@ function App() {
         <Route path="/users/:userID" element={<Places/>}/>
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/:profile" element={<Profile/>}/>
+        <Route path="/:profile/*" element={<Profile/>}/>
       </Routes>
       </AnimatePresence>
     </Layout>

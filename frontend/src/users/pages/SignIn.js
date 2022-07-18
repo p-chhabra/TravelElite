@@ -3,6 +3,8 @@ import AnimatedPage from '../../shared/components/AnimatedPage'
 import "./SignIn.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../shared/context/auth-context'
+import LoadingSpinner from '../../shared/components/LoadingSpinner'
+import ErrorModal from '../../shared/components/ErrorModal'
 
 ///VALIDITY
 const isFiveChars = (value) => {
@@ -14,6 +16,10 @@ const emailValidation = (value) => {
 } 
 
 const SignIn = () => {
+
+  //STATES
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   //Authorization Context
   const auth = useContext(AuthContext);
@@ -31,7 +37,7 @@ const SignIn = () => {
 
   const form = document.getElementById("SignInForm");
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
 
     e.preventDefault();
 
@@ -53,14 +59,47 @@ const SignIn = () => {
     }
 
     if(formIsValid){
-      auth.login();
-      form.reset();
-      Navigate('/profile');
+
+      try{
+        setIsLoading(true);
+        const response = await fetch('http://localhost:5000/api/users/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: emailInputRef.current.value,
+            password: passwordInputRef.current.value
+          })
+        })
+
+        const responseData = await response.json();
+        console.log(responseData);
+
+        if(!response.ok){
+          throw new Error(responseData.message);
+        }
+
+        //Changing Page
+        auth.login(responseData.user.id);
+        form.reset();
+        Navigate(`/${responseData.user.id}`);
+      } catch(err){
+        console.log(err.message);
+        setError(err.message);
+      }
+      setIsLoading(false);
     }
+  }
+
+  const errorHandler = () => {
+    setError(null);
   }
 
   return (
     <AnimatedPage>
+    {<ErrorModal error={error} onClear={errorHandler}/>}  
+    {isLoading && <LoadingSpinner/>}  
     <div className='flex justify-center pt-20'>
     <div className='signinSection'>
     <form action="#" method="POST" className="signinForm" id='SignInForm' name="signinform">

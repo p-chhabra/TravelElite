@@ -1,7 +1,8 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useState, useEffect } from 'react-router-dom'
 import PlaceItem from '../components/PlaceItem'
 import DUMMY_USER_PLACES from '../data/DUMMY_USER_PLACES.json'
+
 
 
 const Places = (props) => {
