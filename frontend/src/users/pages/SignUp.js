@@ -3,6 +3,8 @@ import AnimatedPage from '../../shared/components/AnimatedPage'
 import './SignUp.css'
 import { AuthContext } from '../../shared/context/auth-context';
 import { useNavigate } from 'react-router-dom';
+import ErrorModal from '../../shared/components/ErrorModal'
+import LoadingSpinner from '../../shared/components/LoadingSpinner'
 
 const emailValidation = value => value.includes('@') && value.length >= 5;
 const userNameValidation = value => !value.includes(" ") && value.length >= 4;
@@ -12,6 +14,11 @@ const SignUp = () => {
 
   ///AuthContext
   const auth = useContext(AuthContext);
+
+  //States
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   //Username Handler
   const [username, setUsername] = useState('');
   const onUsernameInput = (e) => {
@@ -64,6 +71,7 @@ const SignUp = () => {
 
     } else{
       try{
+        setIsLoading(true);
         const response = await fetch('http://localhost:5000/api/users/signup',{
           method: 'POST',
           headers: {
@@ -78,21 +86,35 @@ const SignUp = () => {
   
         const responseData = await response.json();
         console.log(responseData);
+        if(!response.ok){
+          throw new Error(responseData.message);
+        }
+
+        //Page Change
+        auth.login(responseData.createdUser.id);
+        auth.setUser(enteredUserName);
+        form.reset();
+        Navigate(`/${responseData.createdUser.id}`);
       } catch(err){
+        setIsLoading(false);
+        setError(err.message);
         console.log(err.message);
         console.log('ABC');
       }
     }
 
-    auth.login();
-    auth.setUser(enteredUserName);
-    form.reset();
-    Navigate(`/${username}`);
+    setIsLoading(false);
   }
+  }
+
+  const errorHandler = () => {
+    setError(null);
   }
 
   return (
     <AnimatedPage>
+      <ErrorModal error={error} onClear={errorHandler}/>
+      {isLoading && <LoadingSpinner asOverlay/>}
     <div className='flex items-center justify-center mt-20'>
     <div className="signupSection">
   <div className="info">
