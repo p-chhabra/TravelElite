@@ -56,10 +56,10 @@ const AllUsers = () => {
     <AnimatedPage>
       {<ErrorModal error={error} onClear={errorHandler}/>}
       {isLoading && <LoadingSpinner/>}
-      <div className="flex items-center justify-center text-gray-300 text-3xl pb-4">
+      {!isLoading && <div className="flex items-center justify-center text-gray-300 text-3xl pb-4">
         <h1>Search User</h1>
-      </div>
-      <SearchBar setTerm = {setSearchTerm}/>
+      </div>}
+      {!isLoading && <SearchBar setTerm = {setSearchTerm}/>}
       {!isLoading && users && allUsers}
     </AnimatedPage>
   );
