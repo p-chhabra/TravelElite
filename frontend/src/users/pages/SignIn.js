@@ -26,6 +26,7 @@ const SignIn = () => {
   
   //Naviagtion
   const Navigate = useNavigate(); 
+  const form = document.getElementById("SignInForm");
 
   const [formInputValidity, setFormInputValidity] = useState({
     email: true,
@@ -35,7 +36,6 @@ const SignIn = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const form = document.getElementById("SignInForm");
 
   const onSubmitHandler = async (e) => {
 
@@ -82,7 +82,7 @@ const SignIn = () => {
 
         //Changing Page
         auth.login(responseData.user.id);
-        form.reset();
+        // form.reset();
         Navigate(`/${responseData.user.id}`);
       } catch(err){
         console.log(err.message);

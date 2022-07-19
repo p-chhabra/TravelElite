@@ -10,6 +10,7 @@ import Profile from "./users/pages/Profile";
 import './index.css';
 import { AnimatePresence } from "framer-motion";
 import {AuthContext} from './shared/context/auth-context'
+import NewPlace from "./places/pages/NewPlace";
 
 function App() {
 
@@ -43,7 +44,8 @@ function App() {
         <Route path="/users/:userID" element={<Places/>}/>
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/:profile/*" element={<Profile/>}/>
+        <Route path="/:profile" element={<Profile/>}/>
+        <Route path={`/:profile/addPlace`} element={<NewPlace/>}/>
       </Routes>
       </AnimatePresence>
     </Layout>
