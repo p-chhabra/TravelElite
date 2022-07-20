@@ -12,7 +12,7 @@
   .modal__header {
     width: 100%;
     padding: 1rem 0.5rem;
-    background: #2a006e;
+    background: linear-gradient(to right, rgba(20, 40, 40, 0.8), rgba(20, 25, 25, 0.8));;
     color: white;
   }
   
@@ -23,6 +23,7 @@
   
   .modal__content {
     padding: 1rem 0.5rem;
+    width: 40rem;
   }
   
   .modal__footer {

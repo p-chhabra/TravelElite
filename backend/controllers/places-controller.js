@@ -144,8 +144,10 @@ const editPlace = async (req, res, next) => {
         return next(error);
     }
 
-    const {description} = req.body;
+    const {description, title, subTitle} = req.body;
     updatedPlace.description = description;
+    updatedPlace.title = title;
+    updatedPlace.subTitle = subTitle;
 
     try{
         await updatedPlace.save();

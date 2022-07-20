@@ -107,3 +107,12 @@
     width: 39rem;
     height: 20rem;
   }
+
+  .footer{
+    text-align: center;
+    width: 39rem;
+  }
+
+  .modalClass{
+    background-image: linear-gradient(to right, rgba(20, 40, 40, 0.8), rgba(20, 25, 25, 0.8));
+  }

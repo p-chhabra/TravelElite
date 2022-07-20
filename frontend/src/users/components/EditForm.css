@@ -1,0 +1,70 @@
+.editPlaceSection {
+    position: relative;
+    text-align: center;
+    color: white;
+    min-height: 25rem;
+    max-width: 39rem;
+  }
+
+.editPlaceForm {
+    width: 39rem;
+    padding: 2rem 0;
+    background-image: linear-gradient(to right, rgba(20, 40, 40, 0.8), rgba(20, 25, 25, 0.8));
+    transition: 0.2s;
+    height: 25rem;
+  }
+  
+  .InputFields {
+    margin: 20px 0;
+    font-size: 16px;
+    padding: 10px;
+    width: 20rem;
+    border: 1px solid rgb(74 222 128);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: rgba(20, 20, 20, 0.2);
+    /* background: url(""); */
+    color: white;
+    outline: none;
+  }
+  
+  .InputFieldInvalid{
+    margin: 20px 0;
+    font-size: 16px;
+    padding: 10px;
+    width: 20rem;
+    border: 1px solid red;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: rgba(20, 20, 20, 0.2);
+    /* background: url(""); */
+    color: white;
+    outline: none;
+  }
+
+  .noBullet {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #join-btn {
+    border: 1px solid rgb(74 222 128);
+    background: rgba(20, 20, 20, 0.6);
+    font-size: 18px;
+    color: white;
+    margin-top: 80px;
+    padding: 10px 50px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  #join-btn:hover {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 10px 80px;
+  }
+
+  .alert{
+    font-size: 13px;
+    background-image: linear-gradient(to right, rgba(20, 40, 40, 0.8), rgba(20, 25, 25, 0.8));
+  }
