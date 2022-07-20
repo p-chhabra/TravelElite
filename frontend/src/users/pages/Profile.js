@@ -43,7 +43,7 @@ const Profile = () => {
 
   //PLACE RENDERING
   const profilePlaces = places.map((place)=>{
-    return <ProfilePlace key={place.id} title={place.title} subTitle={place.subTitle} description={place.description} id={place.id} creator={place.creator} address={place.address} coordinates={place.location}/>
+    return <ProfilePlace key={place.id} title={place.title} subTitle={place.subTitle} description={place.description} id={place.id} address={place.address} coordinates={place.location}/>
   })
 
   const errorHandler = () => {

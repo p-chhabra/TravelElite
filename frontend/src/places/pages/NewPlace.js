@@ -3,13 +3,16 @@ import { AuthContext } from '../../shared/context/auth-context'
 import ErrorModal from '../../shared/components/ErrorModal';
 import LoadingSpinner from '../../shared/components/LoadingSpinner';
 import AnimatedPage from '../../shared/components/AnimatedPage';
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import './NewPlace.css'
 
 const NewPlace = () => {
     //Global Context
     const auth = useContext(AuthContext);
     const form = document.getElementById('AddPlaceForm');
+
+    //NAVIAGTE
+    const Navigate = useNavigate();
 
     //STATES
     const [isLoading, setIsLoading] = useState(false);
@@ -51,6 +54,7 @@ const NewPlace = () => {
           throw new Error(responseData.message);
         }
         form.reset();
+        Navigate(`/${auth.userID}`)
       } catch(err){
         setError(err.message);
         console.log(err);
