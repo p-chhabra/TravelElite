@@ -35,7 +35,7 @@ function App() {
   },[]);
 
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, user: user, setUser: setUserName, userID: userID}}>
+    <AuthContext.Provider value={{isLoggedIn: isLoggedIn, login: login, logout: logout, user: user, setUser: setUserName, userID: userID }}>
     <Layout>
       <AnimatePresence exitBeforeEnter>
       <Routes key={location.pathname} location={location}>

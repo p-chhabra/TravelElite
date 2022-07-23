@@ -21,7 +21,7 @@ const signup = async (req, res, next) => {
         return next(error);
     }
 
-    const {name, email, password} = req.body;
+    const {name, email, password, isPrivate} = req.body;
 
     let existingUser;
     try{
@@ -40,8 +40,9 @@ const signup = async (req, res, next) => {
         name,
         email,
         password,
-        image: 'https://i.pinimg.com/236x/67/0a/1d/670a1d06e7bff426ec343e8c06c93ca5--crazy-faces-strange-people.jpg',
-        places: []
+        image: '',
+        places: [],
+        isPrivate
     })
 
     try{

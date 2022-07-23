@@ -7,7 +7,7 @@ import ErrorModal from '../../shared/components/ErrorModal'
 import LoadingSpinner from '../../shared/components/LoadingSpinner'
 
 const emailValidation = value => value.includes('@') && value.length >= 5;
-const userNameValidation = value => !value.includes(" ") && value.length >= 4;
+const userNameValidation = value => value.length >= 4;
 const passwordValidation = value => !value.includes(" ") && value.length >= 5;
 
 const SignUp = () => {
@@ -40,10 +40,20 @@ const SignUp = () => {
   const emailInputRef = useRef();
   const userNameInputRef = useRef();
   const passwordInputRef = useRef();
+  const privacyInputRef = useRef();
+  const imageInputRef = useRef();
+
 
   const onSumbitHandler = async (e) => {
 
     e.preventDefault();
+
+    //ISPRIVATE HANDLER
+  const isPrivate = () => {
+    console.log(privacyInputRef.current.value)
+    if(privacyInputRef.current.value === "Public") return false;
+    else return true;
+  }
 
     const enteredEmail = emailInputRef.current.value;
   const enteredUserName = userNameInputRef.current.value;
@@ -72,16 +82,16 @@ const SignUp = () => {
     } else{
       try{
         setIsLoading(true);
+        console.log(imageInputRef.current.value)
+        const formData = new FormData();
+        formData.append('name', userNameInputRef.current.value);
+        formData.append('email', emailInputRef.current.value);
+        formData.append('password', passwordInputRef.current.value);
+        formData.append('isPrivate', isPrivate())
+        formData.append('image', imageInputRef.current.value);
         const response = await fetch('http://localhost:5000/api/users/signup',{
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: userNameInputRef.current.value,
-            email: emailInputRef.current.value,
-            password: passwordInputRef.current.value
-          })
+          body:formData
         })
   
         const responseData = await response.json();
@@ -99,7 +109,6 @@ const SignUp = () => {
         setIsLoading(false);
         setError(err.message);
         console.log(err.message);
-        console.log('ABC');
       }
     }
 
@@ -140,9 +149,16 @@ const SignUp = () => {
         <input ref={passwordInputRef} type="password" className={formValidity.password ? `inputFields` : `inputFieldInvalid`} id="password" name="password" placeholder="Password" required/>
         {!formValidity.password && <p className='text-red-500'>Password should be atleast 4 characters long</p>}
       </li>
-      <h1 className='pt-10'>Profile Picture (Optional)</h1>
+      <li className='pt-5'>
+        <h2 htmlFor='profile-type'>Select Privacy</h2>
+        <select ref={privacyInputRef} className='inputFields' name="" id="">
+          <option value="Public">Public</option>
+          <option value="Private">Private</option>
+        </select>
+      </li>
+      <h1 className='pt-5'>Profile Picture (Optional)</h1>
       <li>
-        <input type="file" className='inputFields inputImageField' name="profile-pic" accept='image/png, image/jpeg, image/jpg'/>
+        <input ref={imageInputRef} type="file" className='inputFields inputImageField' name="image" accept='image/png, image/jpeg, image/jpg'/>
       </li>
       <li id="center-btn">
         <input onClick={onSumbitHandler} type="submit" id="join-btn" name="join" alt="Join" value="Join"></input>

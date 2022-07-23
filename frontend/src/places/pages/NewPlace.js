@@ -53,8 +53,7 @@ const NewPlace = () => {
         if(!response.ok){
           throw new Error(responseData.message);
         }
-        form.reset();
-        Navigate(`/${auth.userID}`)
+        Navigate(`/${auth.userID}`);
       } catch(err){
         setError(err.message);
         console.log(err);
