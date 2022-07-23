@@ -18,6 +18,7 @@ const SignUp = () => {
   //States
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [image, setImage] = useState(null);
 
   //Username Handler
   const [username, setUsername] = useState('');
@@ -82,13 +83,13 @@ const SignUp = () => {
     } else{
       try{
         setIsLoading(true);
-        console.log(imageInputRef.current.value)
+        console.log(image);
         const formData = new FormData();
         formData.append('name', userNameInputRef.current.value);
         formData.append('email', emailInputRef.current.value);
         formData.append('password', passwordInputRef.current.value);
         formData.append('isPrivate', isPrivate())
-        formData.append('image', imageInputRef.current.value);
+        formData.append('image', image);
         const response = await fetch('http://localhost:5000/api/users/signup',{
           method: 'POST',
           body:formData
@@ -131,7 +132,7 @@ const SignUp = () => {
     <i className="icon ion-ios-ionic-outline" aria-hidden="true"></i>
     <p>YourPlaces</p>
   </div>
-  <form action="#" method="POST" id='SignUpForm' className="signupForm" name="signupform">
+  <form action="#" method="POST" id='SignUpForm' className="signupForm" name="signupform" encType="multipart/form-data">
     <p className='text-2xl'>Sign Up</p>
     <ul className="noBullet">
       <li>
@@ -158,7 +159,7 @@ const SignUp = () => {
       </li>
       <h1 className='pt-5'>Profile Picture (Optional)</h1>
       <li>
-        <input ref={imageInputRef} type="file" className='inputFields inputImageField' name="image" accept='image/png, image/jpeg, image/jpg'/>
+        <input ref={imageInputRef} type="file" className='inputFields inputImageField' name="image" accept='image/png, image/jpeg, image/jpg' onChange={e => setImage(e.target.files[0])}/>
       </li>
       <li id="center-btn">
         <input onClick={onSumbitHandler} type="submit" id="join-btn" name="join" alt="Join" value="Join"></input>

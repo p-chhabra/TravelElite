@@ -1,5 +1,4 @@
 const multer = require('multer');
-const uuid = require('uuidv4');
 
 const MIME_TYPE_MAP = {
     'image/png' : 'png',
@@ -8,19 +7,19 @@ const MIME_TYPE_MAP = {
 }
 
 const fileUpload = multer({
-    limits: 500000,
     storage: multer.diskStorage({
         destination: (req, file, cb)=>{
-            cb(null, './uploads/images')
+            cb(null, '/home/prathmeshchhabra/Web-Development/First Full Stack Project/backend/uploads')
         },
         filename: (req, file ,cb)=>{
+            console.log(file);
             const ext = MIME_TYPE_MAP[file.mimetype]
-            cb(null, 'asfdsfsdgsd' + '.' + ext)
+            cb(null, Date.now() + '.' + ext)
         }
     }),
     fileFilter: (req, file, cb) => {
         const isValid = !!MIME_TYPE_MAP[file.mimetype];
-        let error = isValid ? null : new Error('Inavlid mimetype');
+        let error = isValid ? null : new Error('Invalid MIME type!');
         cb(error, isValid);
     }
 });
