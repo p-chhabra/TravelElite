@@ -7,6 +7,7 @@ const userRoutes = require('./routes/user-routes');
 const HttpError = require("./modals/http-error");
 
 const app = express();
+const fs = require('fs');
 
 app.use(bodyParser.json());
 
@@ -27,6 +28,11 @@ app.use((req, res, next)=>{
 })
 
 app.use((error, req, res ,next)=>{
+
+    if(req.file){
+        fs.unlink(req.file.path, err => console.log(error));
+    }
+
     if(res.headerSent){
         return next(error);
     }

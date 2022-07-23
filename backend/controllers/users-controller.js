@@ -3,16 +3,6 @@ const HttpError = require('../modals/http-error');
 const {validationResult} = require('express-validator');
 const User = require('../modals/users');
 
-const DUMMY_USERS = [
-    {
-      id: "u1",
-      name: "Ganja",
-      email: "GanjaGun@gmail.com",
-      password: "GanjaOP"
-    },
-    { id: "u2", name: "Panty", email: "PinkPanty@gmail.com", password: "PantyVau" },
-  ];
-
 const signup = async (req, res, next) => {
     const errors = validationResult(req);
 
