@@ -53,14 +53,14 @@ const Profile = () => {
   return (
     <AnimatedPage>
     {isLoading && <LoadingSpinner/>}
-    <ErrorModal error={error} onClear={errorHandler}/>  
-    <h1 className='text-gray-300 text-center text-3xl'>Your Profile</h1>
+    <ErrorModal header={`Hello ${auth.user}!`} error={error} onClear={errorHandler}/>  
+    {!isLoading && <h1 className='text-gray-300 text-center text-3xl'>Your Profile</h1>}
     <div className='flex'>
     {!isLoading && profilePlaces}
     </div>
-    <div className='flex flex-row justify-center m-10'>
+    {!isLoading && <div className='flex flex-row justify-center m-10'>
     <Link className='border-gray-300 rounded-md border-4 p-2 hover:bg-green-600 bg-green-500 text-center text-gray-300 font-bold text-2xl' to={`/${params.profile}/addPlace`}>Add Place</Link>
-    </div>
+    </div>}
     </AnimatedPage>
   )
 }
