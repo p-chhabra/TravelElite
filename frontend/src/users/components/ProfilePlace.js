@@ -51,6 +51,7 @@ const ProfilePlace = (props) => {
     setShowEdit(false);
   }
 
+  console.log(props.placeImage)
 
   return (
     <React.Fragment>
@@ -87,11 +88,11 @@ const ProfilePlace = (props) => {
       <div className="Card-Container">
         <h1>{props.title}</h1>
         <img
-          src="https://images.pexels.com/photos/1680140/pexels-photo-1680140.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+          src={`http://localhost:5000/public/${props.placeImage}`}
           alt="IMG"
         />
         <figcaption>
-          <h2>Details</h2>
+          <h2>{props.subTitle}</h2>
           <p>{props.description}</p>
           <div className='flex flex-row justify-between items-center'>
           <button className='view--button' onClick={showMapHandler}>View on Map</button>

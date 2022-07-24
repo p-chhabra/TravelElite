@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
       ///Wide Device Navbar
     <nav className='w-full flex justify-between items-center px-4 font-bold bg-[#21272c]'>
-        <h1 className='text-gray-300 text-3xl'>YourPlaces</h1>
+        <h1 className='text-gray-300 text-3xl'>TravelElite</h1>
         <ul className='flex flex-row text-gray-300 p-2 items-center space-x-6'>
             {!auth.isLoggedIn && <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
                 <NavLink to="/">Home</NavLink>
