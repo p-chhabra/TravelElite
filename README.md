@@ -15,4 +15,16 @@ TravelElite is a web application based on the MERN-(MongoDB, ExpressJS, ReactJS,
 
 ## PREVIEW
 ### Sign Up Page
-![Sign In Page](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/signup%20image.png)
+![Sign In Page](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/signup%20image.png)  
+  
+### Sign In Page
+![Sign In Page](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/sign%20in.png)  
+  
+### All Users Page
+![All Users Page](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/all%20users.png)  
+  
+### User Profile Page
+![User Profile Page](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/user%20profile.png)  
+  
+### Map Preview
+![Map Preview](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/map.png) 
