@@ -14,3 +14,5 @@ TravelElite is a web application based on the MERN-(MongoDB, ExpressJS, ReactJS,
 - Some third party packages have like 'multer', 'bcryptjs' etc have been used to store files and encrypt user passwords and much more.  
 
 ## PREVIEW
+### Sign Up Page
+![Sign In Page](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/signup%20image.png)
