@@ -1,2 +1,2 @@
-# MERN-Project
-### Under development phase 
+# TravelElite
+### Mission to connect travellers
