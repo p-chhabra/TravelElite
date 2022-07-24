@@ -18,6 +18,8 @@ const VisitUser = (props) => {
     setShowModal(true);
   };
 
+  console.log(props.image);
+
   return (
     <React.Fragment>
       <Modal
@@ -42,7 +44,7 @@ const VisitUser = (props) => {
         <div className="title">{props.name}</div>
 
         <div className="icon">
-          <img src={props.src || defaultImg} alt="IMG" />
+          <img src={`http://localhost:5000/public/${props.image}` || defaultImg} alt="IMG" />
         </div>
 
         <div className="features">

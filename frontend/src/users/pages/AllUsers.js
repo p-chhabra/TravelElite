@@ -43,7 +43,7 @@ const AllUsers = () => {
     } 
   }).map((user) => {
     return (
-      <VisitUser key={user.id} name={user.name} places={user.places.length} rating={user.rating} src={user.image} id={user.id} isPrivate={user.isPrivate}/>
+      <VisitUser key={user.id} name={user.name} places={user.places.length} rating={user.rating} image={user.image} id={user.id} isPrivate={user.isPrivate}/>
     );
   });
 
