@@ -30,7 +30,7 @@ const signup = async (req, res, next) => {
         name,
         email,
         password,
-        image: '',
+        image: req.file.filename,
         places: [],
         isPrivate
     })

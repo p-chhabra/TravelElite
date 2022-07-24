@@ -1,7 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import { useParams} from 'react-router-dom'
 import PlaceItem from '../components/PlaceItem'
-import DUMMY_USER_PLACES from '../data/DUMMY_USER_PLACES.json'
 import AnimatedPage from '../../shared/components/AnimatedPage'
 import LoadingSpinner from '../../shared/components/LoadingSpinner'
 import ErrorModal from '../../shared/components/ErrorModal'
