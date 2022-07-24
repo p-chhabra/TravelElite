@@ -17,12 +17,14 @@ const NewPlace = () => {
     //STATES
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [image, setImage] = useState(null);
 
     //INPUT VALIDATION
     const titleInputRef = useRef();
     const descriptionInputRef = useRef();
     const subTitleInputRef = useRef();
     const addressInputRef = useRef();
+    const placeImageInputRef = useRef();
 
     const [inputValidity, setInputValidty] = useState({
         titleInput: true,
@@ -33,20 +35,18 @@ const NewPlace = () => {
 
     const onSubmitHandler = async (e) => {
       e.preventDefault();
+      const formData = new FormData();
+      formData.append('title',titleInputRef.current.value);
+      formData.append('subTitle',subTitleInputRef.current.value);
+      formData.append('description',descriptionInputRef.current.value);
+      formData.append('address',addressInputRef.current.value);
+      formData.append('creator',auth.userID);
+      formData.append('placeImage',image);
       try{
         setIsLoading(true);
         const response = await fetch('http://localhost:5000/api/places',{
           method: 'POST',
-          headers: {
-            'COntent-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            title: titleInputRef.current.value,
-            subTitle: subTitleInputRef.current.value,
-            description: descriptionInputRef.current.value,
-            address: addressInputRef.current.value,
-            creator: auth.userID
-          })
+          body: formData
         })
 
         const responseData = await response.json();
@@ -71,7 +71,7 @@ const NewPlace = () => {
     {isLoading && <LoadingSpinner/>}  
     <div className='flex justify-center pt-10'>
     <div className='addPlaceSection'>
-    <form action="#" method="POST" className="addPlaceForm" id='AddPlaceForm' name="signinform">
+    <form action="#" method="POST" className="addPlaceForm" id='AddPlaceForm' name="signinform" encType='multipart/form-data'>
     <p className='text-2xl'>Add place</p>
     <ul className="noBullet">
       <li>
@@ -96,7 +96,7 @@ const NewPlace = () => {
       </li>
       <h1 className='pt-10'>Upload Picture</h1>
       <li>
-        <input type="file" className='inputFields inputImageField' name="profile-pic" accept='image/png, image/jpeg, image/jpg'/>
+        <input ref={placeImageInputRef} type="file" className='inputFields inputImageField' name="placeImage" accept='image/png, image/jpeg, image/jpg' onChange={(e) => setImage(e.target.files[0])}/>
       </li>
       <li id="center-btn">
         <input onClick={onSubmitHandler} type="submit" id="join-btn" name="join" alt="Join" value="Create"></input>

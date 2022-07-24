@@ -2,6 +2,8 @@ const { uuid } = require('uuidv4');
 const HttpError = require('../modals/http-error');
 const {validationResult} = require('express-validator');
 const User = require('../modals/users');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const signup = async (req, res, next) => {
     const errors = validationResult(req);
@@ -26,11 +28,26 @@ const signup = async (req, res, next) => {
         return next(error);
     }
 
+    let hashedPassword;
+
+    try{
+        hashedPassword = await bcrypt.hash(password,12);
+    } catch(err){
+        console.log(err);
+        const error = new HttpError(err.message, 404);
+        return next(error);
+    }
+
+    let imageName = '';
+    if(req.file){
+        imageName = req.file.fileName;
+    }
+
     const createdUser = new User({
         name,
         email,
-        password,
-        image: req.file.filename,
+        password: hashedPassword,
+        image: imageName,
         places: [],
         isPrivate
     })
@@ -56,10 +73,23 @@ const login = async (req, res, next) => {
         return next(error);
     }
 
-    if(!userExists || userExists.password !== password){
+    if(!userExists){
         const error = new HttpError("Could not find the user, wrong credentials Entered", 401);
         return next(error);
+    } 
+
+    let isValidPassword = false;
+    try{
+        isValidPassword = await bcrypt.compare(password, userExists.password)
+    } catch(err){
+        const error = new HttpError(err.message, 404);
+        return next(error);
     }
+
+    if(!isValidPassword){
+        const error = new HttpError("Could not find the user, wrong credentials Entered", 401);
+        return next(error);
+    } 
 
     res.json({
         message: "Logged In",

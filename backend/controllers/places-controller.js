@@ -5,44 +5,7 @@ const {validationResult} = require('express-validator');
 const Place = require('../modals/places');
 const User = require('../modals/users');
 const mongoose = require('mongoose');
-
-let DUMMY_PLACES = [{
-    id:"p1",
-    title: "ABC",
-    subTitle: "asdsaf",
-    img: "",
-    description:"asdasfasfadfsd",
-    address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
-    location:{
-        lat: 43.38621,
-        lng: -79.83713   
-    },
-    creatorID: "u1"
-},{
-    id:"p2",
-    title: "ABC",
-    subTitle: "asdsaf",
-    img: "",
-    description:"asdasfasfadfsd",
-    address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
-    location:{
-        lat: 43.38621,
-        lng: -79.83713   
-    },
-    creatorID: "u2"
-},{
-    id:"p3",
-    title: "ABC",
-    subTitle: "asdsaf",
-    img: "",
-    description:"asdasfasfadfsd",
-    address: "Dharmapuri, Forest Colony, Tajganj, Agra, Uttar Pradesh 282001",
-    location:{
-        lat: 43.38621,
-        lng: -79.83713   
-    },
-    creatorID: "u3"
-}]
+const fs = require('fs');
 
 const getPlaceByID = async (req, res, next) => {
     const placeID = req.params.pid;
@@ -100,7 +63,7 @@ const createPlace = async (req, res, next) => {
         },
         address,
         creator,
-        image: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
+        placeImage: req.file.filename
     })
 
     let user;
@@ -174,6 +137,9 @@ const deletePlace = async (req, res, next) => {
         return next(error);
     }
 
+    console.log( __dirname + '/uploads/images/' + place.placeImage)
+    const imagePath = '/home/prathmeshchhabra/Web-Development/First Full Stack Project/backend/uploads/images/'+ place.placeImage;
+
     try{
         const sess = await mongoose.startSession();
         sess.startTransaction();
@@ -186,6 +152,8 @@ const deletePlace = async (req, res, next) => {
         return next(error);
     }
     
+    fs.unlink(imagePath, err => console.log(err));
+
     res.status(200).json("Succesfully deleted");
 }
 

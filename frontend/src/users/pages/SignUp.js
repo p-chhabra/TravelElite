@@ -130,7 +130,7 @@ const SignUp = () => {
   <div className="info">
     <h2>Mission to Connect Travellers</h2>
     <i className="icon ion-ios-ionic-outline" aria-hidden="true"></i>
-    <p>YourPlaces</p>
+    <p>TravelElite</p>
   </div>
   <form action="#" method="POST" id='SignUpForm' className="signupForm" name="signupform" encType="multipart/form-data">
     <p className='text-2xl'>Sign Up</p>
