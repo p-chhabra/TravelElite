@@ -30,7 +30,7 @@ TravelElite is a web application based on the MERN-(MongoDB, ExpressJS, ReactJS,
 ![Map Preview](https://github.com/p-chhabra/MERN-Project/blob/master/Preview%20Images/map.png)  
   
 ## To Start Development Server
-- Clone the TravelELite repository
+- Clone the TravelELite repository on your local environment.
 - To run the frontend development server, run npm start in the frontend directory of the repository.
 - To run the backend development server, run npm start in the backend directory of the repository.
 
