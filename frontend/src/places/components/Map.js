@@ -10,7 +10,7 @@ const Map = (props) => {
 
   const markerIcon = new L.Icon({
     iconUrl: icon,
-    iconSize : [35,45]
+    iconSize : [37,46]
   })
 
   return (
@@ -21,7 +21,7 @@ const Map = (props) => {
       />
       <Marker icon={markerIcon} position={center}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        A pretty CSS3 popup. <br /> Easily customizable!
       </Popup>
       </Marker>
     </MapContainer>
