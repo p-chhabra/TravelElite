@@ -32,7 +32,7 @@ const Navbar = () => {
                 <NavLink to="/users">All Users</NavLink>
             </li>
             {!auth.isLoggedIn && <li className='px-4 hover-underline-animation p-1 hover:text-green-400 duration-500 text-sm'>
-                <NavLink to="/signin">SignIn</NavLink>
+                <NavLink to="/signin">Log In</NavLink>
             </li>}
             {!auth.isLoggedIn && <li className='px-4 border-2 border-green-400 rounded-md p-1 hover:text-[black] hover:bg-green-400 duration-500 text-sm my-2'>
                 <NavLink to="/signup">SignUp</NavLink>
@@ -41,7 +41,7 @@ const Navbar = () => {
                 <NavLink to={`/${auth.userID}`}>Profile</NavLink>
             </li>}
             {auth.isLoggedIn && <li className='px-4 border-2 border-green-400 rounded-md p-1 hover:text-[black] hover:bg-green-400 duration-500 text-sm my-2'>
-                <NavLink onClick={handleSignOut} to="/">Sign Out</NavLink>
+                <NavLink onClick={handleSignOut} to="/">Log Out</NavLink>
             </li>}
         </ul>
     </nav>
