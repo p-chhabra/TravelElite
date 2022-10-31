@@ -53,6 +53,12 @@ const createPlace = async (req, res, next) => {
 
     const {title, description, subTitle, address, creator} = req.body;
 
+    let image = '';
+    console.log(req.file);
+    if(req.file){
+        image = req.file.filename;
+    }
+
     const createdPlace = new Place({
         title,
         subTitle,
@@ -63,7 +69,7 @@ const createPlace = async (req, res, next) => {
         },
         address,
         creator,
-        placeImage: req.file.filename
+        image: req.file.filename
     })
 
     let user;
