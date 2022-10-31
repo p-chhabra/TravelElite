@@ -46,7 +46,7 @@ const Places = (props) => {
     {isLoading && <LoadingSpinner/>}  
     <ErrorModal error = {error} onClear={errorHandler}/>  
     {userPlaces.length!==0 && <h1 className='text-center text-3xl text-gray-300'>Places</h1>}
-    {userPlaces.length===0 && <h1 className='text-center text-3xl text-gray-300'>No Places Found</h1>}
+    {userPlaces.length===0 && <h1 className='text-center text-3xl text-gray-300'>No places found</h1>}
     {userPlaces}
     </AnimatedPage>
   )
