@@ -5,7 +5,6 @@ import defaultImg from "../../assets/default-profile.jpg";
 import Modal from "../../shared/components/Modal";
 
 const VisitUser = (props) => {
-
   //STATES
   const [showModal, setShowModal] = useState(false);
 
@@ -18,8 +17,8 @@ const VisitUser = (props) => {
     setShowModal(true);
   };
 
-  let src = '';
-  if(props.image){
+  let src = "";
+  if (props.image) {
     src = `http://localhost:5000/public/${props.image}`;
   }
 
