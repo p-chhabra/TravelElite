@@ -7,6 +7,7 @@ TravelElite is a web application based on the MERN-(MongoDB, ExpressJS, ReactJS,
 - TravelElite is a single page app built completely on ReactJS Library.
 - The frontend design is completely original made with the help of Tailwind CSS and little help from codepen templates.
 - The app is completely user friendly and easy to navigate.
+![map](https://user-images.githubusercontent.com/92320908/216832634-3460fde9-5d51-447f-9a57-c9aa6ca11e03.PNG)
 
 ## Backend
 - The backend of this web app is built using RESTFUL API design with the help of NodeJS and ExpressJS.
