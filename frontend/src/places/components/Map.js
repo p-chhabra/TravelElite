@@ -1,30 +1,33 @@
-import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker , Popup} from "react-leaflet";
-import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
-import icon from '../../assets/placeholder.png'
-
+import React from "react";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  useLoadScript,
+  Autocomplete,
+} from "@react-google-maps/api";
 
 const Map = (props) => {
-  const { center, zoom } = props;
+  const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: API_KEY,
+    libraries: ["places", "geometry"],
+  });
 
-  const markerIcon = new L.Icon({
-    iconUrl: icon,
-    iconSize : [37,46]
-  })
+  if (!isLoaded) return <div>Loading...</div>;
+
+  const coords = props.center;
+  const lat = coords[0],
+    lng = coords[1];
 
   return (
-    <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} style={{width: "100%", height:"20rem"}}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker icon={markerIcon} position={center}>
-      <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable!
-      </Popup>
-      </Marker>
-    </MapContainer>
+    <GoogleMap
+      zoom={props.zoom}
+      center={{ lat, lng }}
+      mapContainerClassName={"map-contain"}
+    >
+      <Marker position={{ lat, lng }}> </Marker>
+    </GoogleMap>
   );
 };
 

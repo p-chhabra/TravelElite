@@ -42,7 +42,9 @@ const getPlaceByUserID = async (req, res, next) => {
   }
 
   if (!places || places.length === 0) {
-    return next(new HttpError("Could not find a place for the given user ID"));
+    res.json({ places: [] });
+    return;
+    /* return next(new HttpError("Could not find a place for the given user ID")); */
   }
 
   res.json({
@@ -165,9 +167,7 @@ const deletePlace = async (req, res, next) => {
   }
 
   console.log(__dirname + "/uploads/images/" + place.placeImage);
-  const imagePath =
-    "/home/prathmeshchhabra/Web-Development/First Full Stack Project/backend/uploads/images/" +
-    place.placeImage;
+  const imagePath = `/home/prathmeshchhabra/Web-Development/First Full Stack Project/backend/uploads/images/${place.placeImage}`;
 
   try {
     const sess = await mongoose.startSession();
