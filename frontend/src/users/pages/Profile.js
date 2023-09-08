@@ -28,7 +28,7 @@ const Profile = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `http://localhost:5000/api/places/users/${userID}`
+          process.env.REACT_APP_BACKEND_URL + `/places/users/${userID}`
         );
         const responseData = await response.json();
         if (!response.ok) {

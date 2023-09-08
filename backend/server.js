@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
 
 const placesRoutes = require("./routes/places-routes");
 const userRoutes = require("./routes/user-routes");
@@ -49,13 +51,14 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello World</h1>");
 });
 
-const url =
-  "mongodb://van_astrea:abcdefgh@cluster0-shard-00-00.x7qxv.mongodb.net:27017,cluster0-shard-00-01.x7qxv.mongodb.net:27017,cluster0-shard-00-02.x7qxv.mongodb.net:27017/mern?ssl=true&replicaSet=atlas-4xumi5-shard-0&authSource=admin&retryWrites=true&w=majority";
+const url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0-shard-00-00.x7qxv.mongodb.net:27017,cluster0-shard-00-01.x7qxv.mongodb.net:27017,cluster0-shard-00-02.x7qxv.mongodb.net:27017/${process.env.DB_NAME}?ssl=true&replicaSet=atlas-4xumi5-shard-0&authSource=admin&retryWrites=true&w=majority`;
+
+const port = process.env.PORT || 5000;
 
 mongoose
   .connect(url)
   .then(() => {
-    app.listen(5000);
+    app.listen(port);
   })
   .catch((err) => {
     console.log(err);

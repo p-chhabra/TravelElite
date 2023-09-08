@@ -39,7 +39,7 @@ const ProfilePlace = (props) => {
   const onDeleteHandler = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/places/${props.id}`,
+        process.env.REACT_APP_BACKEND_URL + `/places/${props.id}`,
         {
           method: "DELETE",
           headers: {

@@ -49,7 +49,10 @@ const PlaceItem = (props) => {
       </Modal>
       <div className="card-container">
         <h1>{props.title}</h1>
-        <img src={`http://localhost:5000/public/${props.imgName}`} alt="IMG" />
+        <img
+          src={process.env.REACT_APP_ASSET_URL + `/public/${props.imgName}`}
+          alt="IMG"
+        />
         <figcaption>
           <h2>Details</h2>
           <p>{props.description}</p>

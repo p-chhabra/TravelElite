@@ -1,5 +1,7 @@
 const HttpError = require("../modals/http-error");
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const checkAuth = (req, res, next) => {
   //To Bypass default browser behaviour
@@ -11,7 +13,7 @@ const checkAuth = (req, res, next) => {
     if (!token) {
       throw new Error("Authentication failed!");
     }
-    const decodedToken = jwt.verify(token, "secret_key_mangu");
+    const decodedToken = jwt.verify(token, process.env.JWT_KEY);
     req.userData = { userId: decodedToken.userId };
     next();
   } catch (err) {

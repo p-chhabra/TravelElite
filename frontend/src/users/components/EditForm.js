@@ -50,7 +50,7 @@ const EditForm = (props) => {
     if (formIsValid) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/places/${props.placeID}`,
+          process.env.REACT_APP_BACKEND_URL + `/places/${props.placeID}`,
           {
             method: "PATCH",
             headers: {

@@ -4,6 +4,8 @@ const { validationResult } = require("express-validator");
 const User = require("../modals/users");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
@@ -65,7 +67,7 @@ const signup = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: createdUser.id, email: createdUser.email },
-      "secret_key_mangu",
+      process.env.JWT_KEY,
       { expiresIn: "1hr" }
     );
   } catch (err) {
@@ -74,14 +76,12 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res
-    .status(200)
-    .json({
-      userId: createdUser.id,
-      email: createdUser.email,
-      name: createdUser.name,
-      token: token,
-    });
+  res.status(200).json({
+    userId: createdUser.id,
+    email: createdUser.email,
+    name: createdUser.name,
+    token: token,
+  });
 };
 
 const login = async (req, res, next) => {
@@ -124,7 +124,7 @@ const login = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: userExists.id, email: userExists.email },
-      "secret_key_mangu",
+      process.env.JWT_KEY,
       { expiresIn: "1hr" }
     );
   } catch (err) {

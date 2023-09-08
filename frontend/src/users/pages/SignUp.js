@@ -85,7 +85,7 @@ const SignUp = () => {
           formData.append("isPrivate", isPrivate());
           formData.append("image", image);
           const response = await fetch(
-            "http://localhost:5000/api/users/signup",
+            process.env.REACT_APP_BACKEND_URL + "/users/signup",
             {
               method: "POST",
               body: formData,

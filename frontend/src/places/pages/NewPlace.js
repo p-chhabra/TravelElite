@@ -46,13 +46,16 @@ const NewPlace = () => {
     formDatas.append("placeImage", image);
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:5000/api/places", {
-        method: "POST",
-        body: formDatas,
-        headers: {
-          Authorization: "Bearer " + auth.token,
-        },
-      });
+      const response = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "/places",
+        {
+          method: "POST",
+          body: formDatas,
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          },
+        }
+      );
 
       const responseData = await response.json();
       if (!response.ok) {

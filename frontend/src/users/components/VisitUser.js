@@ -19,7 +19,7 @@ const VisitUser = (props) => {
 
   let src = "";
   if (props.image) {
-    src = `http://localhost:5000/public/${props.image}`;
+    src = process.env.REACT_APP_ASSET_URL + `/public/${props.image}`;
   }
 
   return (
