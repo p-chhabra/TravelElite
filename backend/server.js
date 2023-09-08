@@ -12,6 +12,9 @@ const HttpError = require("./modals/http-error");
 const app = express();
 const fs = require("fs");
 
+const buildPath = path.join(__dirname, "../frontend/build");
+app.use(express.static(buildPath));
+
 app.use(express.json());
 
 app.use("/public", express.static(path.join(__dirname, "uploads", "images")));
