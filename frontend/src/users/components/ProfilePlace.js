@@ -132,7 +132,10 @@ const ProfilePlace = (props) => {
       </Modal>
       <div className="Card-Container">
         <h1>{props.title}</h1>
-        <img src={`http://localhost:5000/public/${props.image}`} alt="IMG" />
+        <img
+          src={`${process.env.REACT_APP_ASSET_URL}/public/${props.image}`}
+          alt="IMG"
+        />
         <figcaption>
           <h2>{props.subTitle}</h2>
           <p>{props.description}</p>
