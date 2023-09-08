@@ -183,7 +183,7 @@ const deletePlace = async (req, res, next) => {
   }
 
   console.log(__dirname + "/uploads/images/" + place.placeImage);
-  const imagePath = `/home/prathmeshchhabra/Web-Development/First Full Stack Project/backend/uploads/images/${place.placeImage}`;
+  const imagePath = path.join(__dirname, "uploads", "images", place.placeImage);
 
   try {
     const sess = await mongoose.startSession();

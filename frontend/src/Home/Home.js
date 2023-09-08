@@ -1,7 +1,7 @@
 import React from "react";
 import AnimatedPage from "../shared/components/AnimatedPage";
 import { Link } from "react-router-dom";
-import "/home/prathmeshchhabra/Web-Development/TravelElite/frontend/src/users/pages/SignIn.css";
+import "../users/pages/SignIn.css";
 
 const Home = () => {
   return (
