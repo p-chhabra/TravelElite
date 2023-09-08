@@ -60,9 +60,28 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
+  //JWT TOKEN SENDING
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: createdUser.id, email: createdUser.email },
+      "secret_key_mangu",
+      { expiresIn: "1hr" }
+    );
+  } catch (err) {
+    console.log(err.message);
+    const error = new HttpError("Signing up failed, Please try again", 500);
+    return next(error);
+  }
+
   res
     .status(200)
-    .json({ createdUser: createdUser.toObject({ getters: true }) });
+    .json({
+      userId: createdUser.id,
+      email: createdUser.email,
+      name: createdUser.name,
+      token: token,
+    });
 };
 
 const login = async (req, res, next) => {
@@ -100,9 +119,25 @@ const login = async (req, res, next) => {
     return next(error);
   }
 
+  //JWT TOKEN SENDING
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: userExists.id, email: userExists.email },
+      "secret_key_mangu",
+      { expiresIn: "1hr" }
+    );
+  } catch (err) {
+    console.log(err.message);
+    const error = new HttpError("Signing up failed, Please try again", 500);
+    return next(error);
+  }
+
   res.json({
-    message: "Logged In",
-    user: userExists.toObject({ getters: true }),
+    userId: userExists.id,
+    email: userExists.email,
+    name: userExists.name,
+    token,
   });
 };
 

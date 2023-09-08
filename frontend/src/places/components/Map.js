@@ -4,7 +4,6 @@ import {
   useJsApiLoader,
   Marker,
   useLoadScript,
-  Autocomplete,
 } from "@react-google-maps/api";
 
 const Map = (props) => {

@@ -35,7 +35,6 @@ const Profile = () => {
           throw new Error(responseData.message);
         }
         setPlaces(responseData.places);
-        console.log(responseData);
       } catch (err) {
         console.log(err.message);
         setError(
@@ -87,7 +86,7 @@ const Profile = () => {
           <div className="flex flex-row justify-center m-10">
             <Link
               className="border-gray-300 rounded-md border-4 p-2 hover:bg-green-600 bg-green-500 text-center text-gray-300 font-bold text-2xl"
-              to={`/${params.profile}/addPlace`}
+              to={`/${auth.userID}/addPlace`}
             >
               Add Place
             </Link>

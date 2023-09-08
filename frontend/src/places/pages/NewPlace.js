@@ -44,16 +44,17 @@ const NewPlace = () => {
     formDatas.append("address", addressInputRef.current.value);
     formDatas.append("creator", auth.userID);
     formDatas.append("placeImage", image);
-    console.log(formDatas);
     try {
       setIsLoading(true);
       const response = await fetch("http://localhost:5000/api/places", {
         method: "POST",
         body: formDatas,
+        headers: {
+          Authorization: "Bearer " + auth.token,
+        },
       });
 
       const responseData = await response.json();
-      console.log(responseData);
       if (!response.ok) {
         throw new Error(responseData.message);
       }

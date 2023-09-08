@@ -4,10 +4,6 @@ import PlaceItem from "../components/PlaceItem";
 import AnimatedPage from "../../shared/components/AnimatedPage";
 import LoadingSpinner from "../../shared/components/LoadingSpinner";
 import ErrorModal from "../../shared/components/ErrorModal";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
 
 const Places = (props) => {
   const { userID } = useParams();
@@ -24,7 +20,6 @@ const Places = (props) => {
           `http://localhost:5000/api/places/users/${userID}`
         );
         const responseData = await response.json();
-        console.log(responseData);
         if (!response.ok) {
           throw new Error(responseData.message);
         }
@@ -38,19 +33,6 @@ const Places = (props) => {
     fetchPlaces();
   }, []);
 
-  //ADDRESS to LAT LNG
-  const getCoords = async (address) => {
-    try {
-      const results = await getGeocode({ address });
-      const { lat, lng } = await getLatLng(results[0]);
-      console.log(lat, lng);
-      return { lat, lng };
-    } catch (err) {
-      console.log(err);
-      return { lat: 0, lng: 0 };
-    }
-  };
-
   const userPlaces = places.map((place) => {
     return (
       <PlaceItem
@@ -59,7 +41,6 @@ const Places = (props) => {
         description={place.description}
         subTitle={place.subTitle}
         address={place.address}
-        coordinates={getCoords(place.address)}
         imgName={place.image}
       />
     );

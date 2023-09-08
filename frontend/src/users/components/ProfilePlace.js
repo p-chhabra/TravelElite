@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Modal from "../../shared/components/Modal";
 import Map from "../../places/components/Map";
 import "./ProfilePlace.css";
@@ -9,8 +9,11 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { AuthContext } from "../../shared/context/auth-context";
 
 const ProfilePlace = (props) => {
+  const auth = useContext(AuthContext);
+
   //PLACE COORDINATES
   const Navigate = useNavigate();
 
@@ -39,10 +42,11 @@ const ProfilePlace = (props) => {
         `http://localhost:5000/api/places/${props.id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          },
         }
       );
-      const responseData = await response.json();
-      console.log(responseData);
       setShowModal(false);
       props.setPlacesChanged(true);
     } catch (err) {

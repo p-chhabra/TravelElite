@@ -78,7 +78,6 @@ const SignUp = () => {
       } else {
         try {
           setIsLoading(true);
-          console.log(image);
           const formData = new FormData();
           formData.append("name", userNameInputRef.current.value);
           formData.append("email", emailInputRef.current.value);
@@ -94,16 +93,15 @@ const SignUp = () => {
           );
 
           const responseData = await response.json();
-          console.log(responseData);
           if (!response.ok) {
             throw new Error(responseData.message);
           }
 
           //Page Change
-          auth.login(responseData.createdUser.id);
-          auth.setUser(enteredUserName);
+          auth.login(responseData.userId, responseData.token);
+          auth.setUser(responseData.name);
           form.reset();
-          Navigate(`/${responseData.createdUser.id}`);
+          Navigate(`/${responseData.userId}`);
         } catch (err) {
           setIsLoading(false);
           setError(err.message);

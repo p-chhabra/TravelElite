@@ -70,17 +70,16 @@ const SignIn = () => {
         });
 
         const responseData = await response.json();
-        console.log(responseData);
 
         if (!response.ok) {
           throw new Error(responseData.message);
         }
 
         //Changing Page
-        auth.login(responseData.user.id);
-        auth.setUser(responseData.user.name);
+        auth.login(responseData.userId, responseData.token);
+        auth.setUser(responseData.name);
         // form.reset();
-        Navigate(`/${responseData.user.id}`);
+        Navigate(`/${responseData.userId}`);
       } catch (err) {
         console.log(err.message);
         setError(err.message);

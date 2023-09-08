@@ -82,7 +82,7 @@ const createPlace = async (req, res, next) => {
     },
     address,
     creator,
-    image: req.file.filename,
+    image,
   });
 
   let user;
@@ -131,10 +131,20 @@ const editPlace = async (req, res, next) => {
     return next(error);
   }
 
+  if (updatedPlace.creator._id.toString() !== req.userData.userId) {
+    const error = new HttpError("You are not authorized!", 401);
+    return next(error);
+  }
+
   const { description, title, subTitle } = req.body;
   updatedPlace.description = description;
   updatedPlace.title = title;
   updatedPlace.subTitle = subTitle;
+
+  let token;
+  try {
+    token = jwt.sign({ u }, "secret_key_mangu");
+  } catch (err) {}
 
   try {
     await updatedPlace.save();
@@ -155,6 +165,12 @@ const deletePlace = async (req, res, next) => {
     place = await Place.findById(placeID).populate("creator");
   } catch (err) {
     const error = new HttpError("Deleting place failed, try again", 404);
+    return next(error);
+  }
+
+  if (place.creator._id.toString() !== req.userData.userId) {
+    const error = new HttpError("You are not authorized!", 401);
+    console.log(error);
     return next(error);
   }
 

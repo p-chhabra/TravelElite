@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { AuthContext } from "../../shared/context/auth-context";
 import "./EditForm.css";
 
 ///VALIDITY
@@ -7,6 +8,7 @@ const isFiveChars = (value) => {
 };
 
 const EditForm = (props) => {
+  const auth = useContext(AuthContext);
   const form = document.getElementById("EditForm");
 
   const [formInputValidity, setFormInputValidity] = useState({
@@ -53,6 +55,7 @@ const EditForm = (props) => {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
+              Authorization: "Bearer " + auth.token,
             },
             body: JSON.stringify({
               title: titleInputRef.current.value,
@@ -61,10 +64,8 @@ const EditForm = (props) => {
             }),
           }
         );
-        console.log(response.message);
         props.closeEdit();
         props.setPlacesChanged(true);
-        form.reset();
       } catch (err) {
         console.log(err);
       }
