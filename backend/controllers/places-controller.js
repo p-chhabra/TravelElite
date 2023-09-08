@@ -6,6 +6,7 @@ const Place = require("../modals/places");
 const User = require("../modals/users");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const path = require("path");
 
 const getPlaceByID = async (req, res, next) => {
   const placeID = req.params.pid;
@@ -182,8 +183,15 @@ const deletePlace = async (req, res, next) => {
     return next(error);
   }
 
-  console.log(__dirname + "/uploads/images/" + place.placeImage);
-  const imagePath = path.join(__dirname, "uploads", "images", place.placeImage);
+  // console.log(place);
+  const imagePath = path.join(
+    __dirname,
+    "..",
+    "uploads",
+    "images",
+    `${place.image}`
+  );
+  // console.log(imagePath);
 
   try {
     const sess = await mongoose.startSession();

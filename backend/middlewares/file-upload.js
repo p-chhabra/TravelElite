@@ -1,4 +1,5 @@
 const multer = require("multer");
+const path = require("path");
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -6,10 +7,12 @@ const MIME_TYPE_MAP = {
   "image/jpg": "jpg",
 };
 
+// console.log(__dirname);
+
 const fileUpload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, path.join(__dirname, "uploads", "images"));
+      cb(null, path.join(__dirname, "..", "uploads", "images"));
     },
     filename: (req, file, cb) => {
       console.log(file);
