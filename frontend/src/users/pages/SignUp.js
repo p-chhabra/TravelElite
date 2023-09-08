@@ -8,8 +8,7 @@ import LoadingSpinner from "../../shared/components/LoadingSpinner";
 
 const emailValidation = (value) => value.includes("@") && value.length >= 5;
 const userNameValidation = (value) => value.length >= 4;
-const passwordValidation = (value) =>
-  !value.includonSumbitHandleres(" ") && value.length >= 5;
+const passwordValidation = (value) => !value.includes(" ") && value.length >= 5;
 
 const SignUp = () => {
   ///AuthContext
