@@ -46,6 +46,8 @@ const signup = async (req, res, next) => {
     imageName = req.file.filename;
   }
 
+  console.log(imageName);
+
   const createdUser = new User({
     name,
     email,
